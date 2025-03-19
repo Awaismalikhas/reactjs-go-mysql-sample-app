@@ -1,5 +1,5 @@
 # This is a docker-compose file for a 3-tier application consisting of a frontend, backend and database service.
-version: '3.8'
+version: '3.3'
 
 services:
 
@@ -11,7 +11,7 @@ services:
       context: ./frontend
       dockerfile: dockerfile
     ports:
-      - "80:80"
+      - "8080:80"
     restart: always
     depends_on:
       - backend
@@ -45,11 +45,11 @@ services:
       dockerfile: dockerfile
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - my-data-2:/var/lib/mysql
+      - my-data-3:/var/lib/mysql
     ports:
       - "3306:3306"
 
 # Lastly, there is a volume defined for the persistent data storage.
 
 volumes:
-  my-data-2:
+  my-data-3:

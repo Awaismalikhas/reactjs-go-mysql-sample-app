@@ -1,0 +1,22 @@
+name: Deploy 3-Tier App on Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Run on your self-hosted server
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Stop and Remove Existing Containers
+      run: |
+        docker-compose down
+
+    - name: Build and Start New Containers
+      run: |
+        docker-compose up --build -d
